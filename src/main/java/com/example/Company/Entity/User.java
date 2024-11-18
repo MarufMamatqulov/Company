@@ -4,30 +4,40 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user_controllers")
-public class User {
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String username;
     @Column(nullable = false)
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING) // Enum qiymatlarini saqlash uchun
     private Set<Role> roles;
 
+    public enum Role {
+        ADMIN,
+        EMPLOYEE,
+        DEPARTMENT_HEAD,
+        DIRECTOR
+    }
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Employee employee;
+
 
     public long getId() {
         return id;
@@ -37,16 +47,8 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -61,17 +63,43 @@ public class User {
         this.roles = roles;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    // Getter va setter metodlar
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> (GrantedAuthority) () -> "ROLE_" + role.name())
+                .collect(Collectors.toSet());
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
-    public enum Role {
-        DIRECTOR,
-        DEPARTMENT_HEAD,
-        EMPLOYEE
+    @Override
+    public String getUsername() {
+        return this.username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
+

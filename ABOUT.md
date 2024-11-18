@@ -1,14 +1,14 @@
 Amaliy vazifa
 Http methods va JPA  mavzulari uchun amaliy vazifa
 
-Vazifaning qo’yilishi: Vazifangiz bir kichik korxonaning elektron hisobini yuritish uchun tizim ishlab chiqishingiz kerak. Korxonaning tarkibida xodimlarni boshqarish bo’limi, hamda mijozlar bilan ishlash bo’limlari mavjud. Ammo korxona rejasida yangi bo’limlar ochilishi ko’zda tutilgan. Ushbu vazifada xodimlarni boshqarish bo’limi uchun, tizimning bir bo’lagini ishlab chiqing. Ya’ni xodimlarni korxona tarkibiga qo’shish, ularni ma’lumotlarini tahrirlash, har bir xodim haqida to’liq ma’lumotni olish, hamda xodimni ishdan olish kabi imkoniyatlarini  yaratib bering.
+1.Vazifaning qo’yilishi: Vazifangiz bir kichik korxonaning elektron hisobini yuritish uchun tizim ishlab chiqishingiz kerak. Korxonaning tarkibida xodimlarni boshqarish bo’limi, hamda mijozlar bilan ishlash bo’limlari mavjud. Ammo korxona rejasida yangi bo’limlar ochilishi ko’zda tutilgan. Ushbu vazifada xodimlarni boshqarish bo’limi uchun, tizimning bir bo’lagini ishlab chiqing. Ya’ni xodimlarni korxona tarkibiga qo’shish, ularni ma’lumotlarini tahrirlash, har bir xodim haqida to’liq ma’lumotni olish, hamda xodimni ishdan olish kabi imkoniyatlarini  yaratib bering.
 Xodimlar to’g’risida quyidagi ma’lumotlar saqlanishi shart: Ismi, familiyasi, sharifi, yoshi,
 passport ma’lumotlari( seriyasi, raqami, JSHSHIR, millati), ish haqi, yashash manzili, Bo’limi (korxona tarkibidagi bo’limlardan biri).
 Korxonada xodimlar quyidagi lavozimlar asosida taqsimlanadi: Direktor, bo’lim boshlig’i, xodim.
 
 
 
-Vazifaning qo’yilishi: Bu galgi vazifada korxonaning mijozlar bilan ishlash bo’limi uchun tizimning bir bo’lagini ishlab chiqishingiz zarur. Korxonaning mijozlar bilan ishlash bo’limining ish  jarayoni quyidagicha: Mijoz korxonaga tashrif buyurganda, korxonaning mijozlar bilan ishlash bo’limi xodimi bilan uchrashadi, xodim mijozning kerakli ma’lumotlarini(ismi, familiyasi, passport seriya, passport raqam, JSHSHIR, yashash manzili, hamda joriy sana+vaqt)) tizimga o’z akkounti orqali saqlab qo’yadi. Korxonaning mijozlar bilan ishlash bo’limi xodimlariga quyidagi imkoniyatlar yaratilishi kerak: Mijozni ro’yxatdan o’tkazish, tahrirlash, mijoz haqida batafsil ma’lumot olish, Mijozni arxiv bo’limiga o’tkazish, har bir xodim o’zi ro’yxatdan o’tkazgan mijozlarini ko’rish.
+2.Vazifaning qo’yilishi: Bu galgi vazifada korxonaning mijozlar bilan ishlash bo’limi uchun tizimning bir bo’lagini ishlab chiqishingiz zarur. Korxonaning mijozlar bilan ishlash bo’limining ish  jarayoni quyidagicha: Mijoz korxonaga tashrif buyurganda, korxonaning mijozlar bilan ishlash bo’limi xodimi bilan uchrashadi, xodim mijozning kerakli ma’lumotlarini(ismi, familiyasi, passport seriya, passport raqam, JSHSHIR, yashash manzili, hamda joriy sana+vaqt)) tizimga o’z akkounti orqali saqlab qo’yadi. Korxonaning mijozlar bilan ishlash bo’limi xodimlariga quyidagi imkoniyatlar yaratilishi kerak: Mijozni ro’yxatdan o’tkazish, tahrirlash, mijoz haqida batafsil ma’lumot olish, Mijozni arxiv bo’limiga o’tkazish, har bir xodim o’zi ro’yxatdan o’tkazgan mijozlarini ko’rish.
 
 
 

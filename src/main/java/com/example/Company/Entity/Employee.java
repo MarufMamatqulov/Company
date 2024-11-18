@@ -3,7 +3,7 @@ package com.example.Company.Entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
 
 @Entity
 @NoArgsConstructor
@@ -26,14 +26,20 @@ public class Employee {
     private String nationality;
     private Double salary;
     private String address;
+    @Column(nullable = false)
+    private String department;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)// Or use CascadeType.PERSIST
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 
     public User getUser() {
         return user;
@@ -122,14 +128,6 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public Role getRole() {
