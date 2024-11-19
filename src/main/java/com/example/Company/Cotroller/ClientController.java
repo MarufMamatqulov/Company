@@ -5,6 +5,7 @@ import com.example.Company.Entity.Employee;
 import com.example.Company.Service.ClientService;
 import com.example.Company.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,37 @@ public class ClientController {
     public String deleteClient(@PathVariable Long id) {
         clientService.deleteClient(id);
         return "Client Deleted";
+    }
+
+    // 1. Kunlik ro'yxatdan o'tgan mijozlar soni
+    @GetMapping("/daily-registrations")
+    public ResponseEntity<List<Object[]>> getDailyRegisteredClients() {
+        return ResponseEntity.ok(clientService.getDailyRegisteredClients());
+    }
+
+    // 2. Eng ko'p mijoz ro'yxatdan o'tkazgan xodim
+    @GetMapping("/top-registrar")
+    public ResponseEntity<Object[]> getTopRegistrarEmployee() {
+        return ResponseEntity.ok(clientService.getTopRegistrarEmployee());
+    }
+
+    // 3. Eng ko'p mijoz ro'yxatdan o'tkazgan top 3 xodim
+    @GetMapping("/top-3-registrars")
+    public ResponseEntity<List<Object[]>> getTop3RegistrarEmployees() {
+        return ResponseEntity.ok(clientService.getTop3RegistrarEmployees());
+    }
+
+    // 4. So'nggi 1 oyda ro'yxatdan o'tgan mijozlar soni
+    @GetMapping("/last-month-registrations")
+    public ResponseEntity<Long> getClientsRegisteredLastMonth() {
+        return ResponseEntity.ok(clientService.getClientsRegisteredLastMonth());
+    }
+
+
+    // 5. So'nggi 1 oyning eng faol kuni
+    @GetMapping("/most-active-day-last-month")
+    public ResponseEntity<Object[]> getMostActiveDayLastMonth() {
+        return ResponseEntity.ok(clientService.getMostActiveDayLastMonth());
     }
 
 }

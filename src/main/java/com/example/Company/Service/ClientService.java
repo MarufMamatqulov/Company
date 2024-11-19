@@ -4,6 +4,8 @@ import com.example.Company.Entity.Client;
 import com.example.Company.Entity.Employee;
 import com.example.Company.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -85,6 +87,38 @@ public class ClientService {
 
     public void deleteClient(Long clientId) {
         clientRepository.deleteById(clientId);
+    }
+
+    // 1. Kunlik ro'yxatdan o'tgan mijozlar
+    public List<Object[]> getDailyRegisteredClients() {
+        return clientRepository.findDailyRegisteredClients();
+    }
+
+    // 2. Eng ko'p mijoz ro'yxatdan o'tkazgan xodim
+    public Object[] getTopRegistrarEmployee() {
+        List<Object[]> results = clientRepository.findTopRegistrarEmployee();
+        return results.isEmpty() ? null : results.get(0);
+    }
+
+    // 3. Eng ko'p mijoz ro'yxatdan o'tkazgan top 3 xodim
+    public List<Object[]> getTop3RegistrarEmployees() {
+        Pageable pageable = PageRequest.of(0, 3);
+        return clientRepository.findTop3RegistrarEmployees(pageable);
+    }
+
+    // 4. So'nggi 1 oyda ro'yxatdan o'tgan mijozlar soni
+    public Long getClientsRegisteredLastMonth() {
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusMonths(1);
+        return clientRepository.countClientsRegisteredLastMonth(startDate, endDate);
+    }
+
+    // 5. So'nggi 1 oyning eng faol kuni
+    public Object[] getMostActiveDayLastMonth() {
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusMonths(1);
+        List<Object[]> results = clientRepository.findMostActiveDayLastMonth(startDate, endDate);
+        return results.isEmpty() ? null : results.get(0);
     }
 
 }
