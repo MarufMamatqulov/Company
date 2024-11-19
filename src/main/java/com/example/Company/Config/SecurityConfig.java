@@ -39,6 +39,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE,"/api/clients/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/clients/**").hasAnyRole("DIRECTOR","EMPLOYEE", "DEPARTMENT_HEAD")
                         .requestMatchers(HttpMethod.DELETE,"/api/expenses/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
+                        .requestMatchers("/api/expenses/expenses-per-type").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
+                        .requestMatchers("/api/expenses/most-expensive-type").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
+                        .requestMatchers("/api/expenses/started-last-month").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
+                        .requestMatchers("/api/expenses/stopped-last-month").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
+                        .requestMatchers("/api/expenses/top-spender-employee").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/expenses/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD", "EMPLOYEE")
                         .anyRequest().authenticated() // Boshqa barcha so'rovlarni autentifikatsiyaga muhtoj qilish
                 )
