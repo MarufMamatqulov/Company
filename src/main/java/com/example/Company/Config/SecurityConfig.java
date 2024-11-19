@@ -31,6 +31,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/login").permitAll() // Login URL-lariga ruxsat berish
                         .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("DIRECTOR")
+                        .requestMatchers("/api/employees/department-status").hasAnyRole("DIRECTOR", "DEPARTMENT_HEAD")
+                        .requestMatchers("/api/employees/filter-by-age").hasAnyRole("DIRECTOR", "DEPARTMENT_HEAD")
+                        .requestMatchers("/api/employees/total-salaries").hasAnyRole("DIRECTOR", "DEPARTMENT_HEAD")
+                        .requestMatchers("/api/employees/list").hasAnyRole("DIRECTOR", "DEPARTMENT_HEAD")
                         .requestMatchers("/api/employees/**").hasAnyRole( "DIRECTOR","EMPLOYEE", "DEPARTMENT_HEAD")
                         .requestMatchers(HttpMethod.DELETE,"/api/clients/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/clients/**").hasAnyRole("DIRECTOR","EMPLOYEE", "DEPARTMENT_HEAD")

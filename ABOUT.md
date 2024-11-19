@@ -17,12 +17,12 @@ Xodimlar ushbu ma’lumotlarning har birini va hammasini(jadval shaklida) ko’r
 
 
 
-Vazifaning qo’yilishi: Korxona direktori uchun alohida statistikalar kerak bo’lib qoldi.
+4.Vazifaning qo’yilishi: Korxona direktori uchun alohida statistikalar kerak bo’lib qoldi.
 Hodimlar haqida quyidagi statistikalar kerak bo’ladi:
 1. Bo’limlar kesimida korxona xodimlar soni. (Har bir bo’limda nechtadan xodim ishlayotganligini son hamda foiz orqali ifodasi).
-2. Xodimlarini yosh bo’yicha filterlash.
+2. Xodimlarini yosh bo’yicha filterlash. GET /api/employees/filter-by-age?minAge=25&maxAge=30
 3. Barcha hodimlar jadvalini pagination bilan chiqarish.
-4. Xodimlarni maoshlarining umumiy summalarini topish.
+4. Xodimlarni maoshlarining umumiy summalarini topish.GET /api/employees/total-salaries
 
 
 

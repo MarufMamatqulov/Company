@@ -9,8 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EmployeeService {
@@ -98,6 +97,55 @@ public class EmployeeService {
 
         employeeRepository.delete(employee);
     }
+
+    public List<Map<String , Object>> getDepartmentStatus(){
+        List<Object[]> status = employeeRepository.countEmployeesByDepartment();
+        List<Map<String , Object>> result = new ArrayList<>();
+
+        long totalEmployees = status.stream().mapToLong(o -> (long) o[1]).sum();
+
+        for (Object[] o : status){
+            String department = (String) o[0];
+            long count = (long) o[1];
+            double percentage = (double) count / totalEmployees * 100;
+
+            Map<String , Object> map = new HashMap<>();
+            map.put("department", department);
+            map.put("count", count);
+            map.put("percentage", percentage);
+            result.add(map);
+        }
+        return result;
+    }
+
+    public List<Employee> filterEmployeesByAge(int minAge, int maxAge){
+        return employeeRepository.findEmployeesByAgeRange(minAge, maxAge);
+    }
+
+
+
+    public Double getTotalSalaries() {
+        return employeeRepository.getTotalSalaries();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    @Transactional
 //    public void deleteEmployee(Long id) {
