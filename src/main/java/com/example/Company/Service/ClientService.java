@@ -83,4 +83,8 @@ public class ClientService {
         return clientRepository.findByArchivedTrue();
     }
 
+    public void deleteClient(Long clientId) {
+        clientRepository.deleteById(clientId);
+    }
+
 }

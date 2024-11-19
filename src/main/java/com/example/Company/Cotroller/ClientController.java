@@ -53,4 +53,10 @@ public class ClientController {
         return clientService.getArchivedClients();
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteClient(@PathVariable Long id) {
+        clientService.deleteClient(id);
+        return "Client Deleted";
+    }
+
 }

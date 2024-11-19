@@ -32,7 +32,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/login").permitAll() // Login URL-lariga ruxsat berish
                         .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("DIRECTOR")
                         .requestMatchers("/api/employees/**").hasAnyRole( "DIRECTOR","EMPLOYEE", "DEPARTMENT_HEAD")
+                        .requestMatchers(HttpMethod.DELETE,"/api/clients/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/clients/**").hasAnyRole("DIRECTOR","EMPLOYEE", "DEPARTMENT_HEAD")
+                        .requestMatchers(HttpMethod.DELETE,"/api/expenses/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
+                        .requestMatchers("/api/expenses/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD", "EMPLOYEE")
                         .anyRequest().authenticated() // Boshqa barcha so'rovlarni autentifikatsiyaga muhtoj qilish
                 )
                 .addFilterBefore(new JWTFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // JWTFilter-ni qo'shish
