@@ -2,6 +2,7 @@ package com.example.Company.Config;
 
 import com.example.Company.Security.JWTFilter;
 import com.example.Company.Security.JwtTokenProvider;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -46,6 +47,14 @@ public class SecurityConfig {
                         .requestMatchers("/api/expenses/top-spender-employee").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/expenses/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD", "EMPLOYEE")
                         .anyRequest().authenticated() // Boshqa barcha so'rovlarni autentifikatsiyaga muhtoj qilish
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+
+                            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                            response.getWriter().write("Sizning lavozimingiz bu amalni bajarishga ruxsat bermaydi.");
+                            response.getWriter().flush();
+                        })
                 )
                 .addFilterBefore(new JWTFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // JWTFilter-ni qo'shish
 
