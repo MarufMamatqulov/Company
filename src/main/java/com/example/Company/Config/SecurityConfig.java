@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/expenses/stopped-last-month").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/expenses/top-spender-employee").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD")
                         .requestMatchers("/api/expenses/**").hasAnyRole("DIRECTOR","DEPARTMENT_HEAD", "EMPLOYEE")
+                        .requestMatchers("/api/logs/**").hasAnyRole("DIRECTOR")
                         .anyRequest().authenticated() // Boshqa barcha so'rovlarni autentifikatsiyaga muhtoj qilish
                 )
                 .exceptionHandling(exceptionHandling -> exceptionHandling

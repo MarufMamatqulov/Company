@@ -33,6 +33,13 @@ public class Employee {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
+    public enum Role {
+        DIRECTOR,
+        DEPARTMENT_HEAD,
+        EMPLOYEE
+
+    }
+
     public String getDepartment() {
         return department;
     }
@@ -144,10 +151,5 @@ public class Employee {
 
 
 
-enum Role {
-    DIRECTOR,
-    DEPARTMENT_HEAD,
-    EMPLOYEE
 
-}
 
